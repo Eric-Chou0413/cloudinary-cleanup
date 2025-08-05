@@ -1,7 +1,7 @@
 name: Cleanup Cloudinary
 on:
   schedule:
-    - cron: '0 0 * * 0' # 每週日凌晨 00:00 UTC 執行
+    - cron: '0 0 * * 0' # 每週日執行
   workflow_dispatch: # 手動觸發
 
 jobs:
