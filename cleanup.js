@@ -4,7 +4,7 @@ const cloudinary = require('cloudinary').v2;
 cloudinary.config();
 
 // 可以調整的參數
-const DAYS_TO_KEEP = 7; // 保留最近幾天的檔案
+const DAYS_TO_KEEP = 0; // 保留最近幾天的檔案
 const DELETE_ALL = false; // 是否刪除所有檔案（測試用）
 
 async function cleanup() {
