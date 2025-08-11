@@ -1,20 +1,23 @@
 name: Cleanup Cloudinary
 on:
   schedule:
-    - cron: '0 0 * * 0' # 每週日執行
-  workflow_dispatch: # 手動觸發
+    - cron: '0 0 * * 0' # 每週日 UTC 00:00 執行
+  workflow_dispatch: # 允許手動觸發
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v2
-      - name: Install Cloudinary
-        run: npm install cloudinary
-      - name: Run cleanup
+      - uses: actions/checkout@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run cleanup script
         env:
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL }}
-        run: |
-          node cleanup.js
+        run: node cleanup.js
